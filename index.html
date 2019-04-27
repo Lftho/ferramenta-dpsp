@@ -1,0 +1,378 @@
+
+<html lang="pt-br"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="bootstrap/css/style.css" rel="stylesheet">
+  <title>Ferramentas DPSP</title>
+</head>
+<body>
+  <nav>
+      <div class="nav nav-tabs bg-dark navbar-dark" id="nav-tab" role="tablist">
+        ​<a class="navbar-brand" href="#">
+          <!-- Aqui fica o Logo para caso queria colocar - Exemplo: <img src-"coloca o caminho correto da imagem">, para caso queria criar algum estilo é só 
+          criar uma classe -->
+        </a>
+        <a class="nav-item nav-link active show color1" id="nav-ip-tab" role="tab" aria-selected="true" aria-controls="nav-ip" href="#nav-ip" data-toggle="tab"><strong>Calculo de IP</strong></a>
+        <a class="nav-item nav-link color2" id="nav-aux-tab" role="tab" aria-selected="false" aria-controls="nav-aux" href="#nav-aux" data-toggle="tab"><strong>Controle de Pausas</strong></a>
+        <a class="nav-item nav-link color3" id="nav-dec-tab" role="tab" aria-selected="false" aria-controls="dec-aux" href="#nav-dec" data-toggle="tab"><strong>Decodificador de Senhas</strong></a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade active show" id="nav-ip" role="tabpanel" aria-labelledby="nav-ip-tab">
+          <div class="container">
+              <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                      <br><br>
+                      <div class="row bloco">
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                  <label class="input-group-text bandeira" for="inputGroupSelect01">Bandeira</label>
+                              </div>
+                              <select class="custom-select" id="bandeira">
+                                  <option selected="">Escolher</option>
+                                  <option value="1">DSP</option>
+                                  <option value="2">DP</option>
+                              </select>
+                          </div>
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text vdloja">VD LOJA</span>
+                              </div>
+                              <input class="form-control" id="vdLoja" aria-describedby="inputGroup-sizing-default" style="text-align: center;" aria-label="Exemplo do tamanho do input" type="text" maxlength="4" value="">
+                          </div>
+                          <div class="col-4"></div>
+                          <div class="col-4">
+                              <button class="calculIP" onclick="calculaIP()" type="button" data-toggle="modal" data-target="#modalExemplo">
+                                  Calcular IP
+                              </button>
+                          </div>
+                          <div class="col-4"></div>
+                      </div>
+                  </div>
+                  <div class="col-4"></div>
+              </div>
+          </div>
+      </div>
+      <div class="tab-pane fade" id="nav-aux" role="tabpanel" aria-labelledby="nav-aux-tab">
+      <div class="container">
+        <div class="row">
+          <div id="contenedor">
+            <div class="reloj" id="Horas">00</div>
+            <div class="reloj" id="Minutos">:00</div>
+            <div class="reloj" id="Segundos">:00</div>
+            <div class="reloj" id="Centesimas">:00</div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" style="background-image: linear-gradient(#00BFFF,#87CEFA); font-weight: bold; color: black;">Identificação da Pausa</span>
+                </div>
+                <input class="form-control" id="identificacaoPausa" aria-describedby="inputGroup-sizing-default" style="text-align: center;" aria-label="Exemplo do tamanho do input" type="text" value="">
+            </div>
+            <input class="boton1" id="inicio" onclick="inicio();" type="button" value="Start ►">
+            <input disabled="" class="boton2" id="parar" onclick="parar();" type="button" value="Stop ∎">
+            <input disabled="" class="boton3" id="continuar" onclick="inicio();" type="button" value="Resume ↺">
+            <input disabled="" class="boton4" id="reinicio" onclick="reinicio();" type="button" value="Reset ↻">
+          </div>
+        </div>
+        <br><br><br><br>
+        <div class="row">
+          <div class="col-4"></div>
+          <div class="col-4">
+              <center><input class="boton5" onclick="volta();" type="button" value="Registrar"><br></center>
+          </div>
+          <div class="col-4"></div>
+        </div>
+        <br><br>
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6">
+            <div style="overflow: auto; width: 540px; height: 200px; border:2px solid; background-color: white;">
+                <table class="table">
+                    <thead class="thead">
+                        <tr>
+                          <th class="ident" scope="col">Identificação</th>
+                          <th class="regis" scope="col">Registro</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td id="voltas">00:00:00<br></td>
+                          <td id="pausa">Almoço<br></td>
+                        </tr>
+                      </tbody>  
+                </table>
+            </div> 
+          </div>
+          <div class="col-4"></div>
+        </div>
+      </div>
+      </div>
+      <div class="tab-pane fade" id="nav-dec" role="tabpanel" aria-labelledby="nav-dec-tab">
+        <br>
+        <div class="container">
+          <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="background-image: linear-gradient(#00BFFF,#87CEFA); font-weight: bold; color: black;">Primeiro Digito</span>
+                    </div>
+                    <input class="form-control" id="vdLoja" aria-describedby="inputGroup-sizing-default" style="text-align: center;" aria-label="Exemplo do tamanho do input" type="text" maxlength="1" value="">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="background-image: linear-gradient(#00BFFF,#87CEFA); font-weight: bold; color: black;">Segundo Digito</span>
+                    </div>
+                    <input class="form-control" id="vdLoja" aria-describedby="inputGroup-sizing-default" style="text-align: center;" aria-label="Exemplo do tamanho do input" type="text" maxlength="1" value="">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="background-image: linear-gradient(#00BFFF,#87CEFA); font-weight: bold; color: black;">Terceiro Digito</span>
+                    </div>
+                    <input class="form-control" id="vdLoja" aria-describedby="inputGroup-sizing-default" style="text-align: center;" aria-label="Exemplo do tamanho do input" type="text" maxlength="1" value="">
+                </div>
+            </div>
+            <div class="col-4"></div>
+          </div>
+          <div class="row">
+              <div class="col-5"></div>
+              <div class="col-4">
+                  <button class="boton" onclick="decodificar()" type="button" data-toggle="modal" data-target="#modalExemplo">
+                      Decodificar
+                  </button>
+              </div>
+              <div class="col-1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+  <div tabindex="-1" class="modal fade bd-example-modal-lg" id="modalExemplo" role="dialog" aria-hidden="true" aria-labelledby="exampleModalLabel" style="display: none;">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header title1" style="background-color: #ADD8E6">
+            <h5 class="modal-title" id="exampleModalLabel" style="color: black" >IP dos Terminais</h5>
+            <button class="close" aria-label="Fechar" type="button" data-dismiss="modal">
+              <span aria-hidden="true" style="color: red"><strong>X</strong></span>
+            </button>
+          </div>
+          <!-- O modal na tela do windows -->
+          <div class="modal-body" style="background-color: #D3D3D3">
+              <strong><center><p id="vdInvalido" style="color: red;"></p></center></strong>
+              <div class="container">
+                  <div class="row">
+                      <div class="col-7">
+                          <div class="row">
+                              <strong><p id="servidor">Gerência: 10.226..1</p></strong>
+                          </div>
+                          <div class="row">
+                              <strong><p id="balcao">Balcões: Entre 10.226..50 até 10.226..59</p></strong>
+                          </div>
+                          <div class="row">
+                              <strong><p id="caixa">Caixas: Entre 10.226..2 até 10.226..9</p></strong>
+                          </div>
+                          <div class="row">
+                              <strong><p id="impCupom">Impressora de Cupom: 10.226..118</p></strong>
+                          </div>
+                      </div>
+                      <div class="col-1"></div>
+                      <div class="col-4">
+                          <div class="row">
+                              <strong><p id="link">Link Geral: 10.226..125</p></strong>
+                          </div>
+                          <div class="row">
+                              <strong><p id="roteador">Roteador: 10.226..254</p></strong>
+                          </div>
+                          <div class="row">
+                              <strong><p id="tiraTeima">Tira-Teima: 10.226..110</p></strong>
+                          </div>
+                          <div class="row">
+                              <strong><p id="voip">VOIP: 10.226..70 ou 10.226..71</p></strong>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          <div class="modal-footer">
+            <button class="boton" type="button" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <script>
+          function calculaIP() {
+              var bandeira = document.getElementById("bandeira").value;
+              var vdLoja = document.getElementById("vdLoja").value;
+          
+              if(bandeira == 1){
+                if(vdLoja <= 250){
+                  document.getElementById("link").innerHTML = "Link Geral: 10."+"0."+vdLoja+".125";
+                  document.getElementById("roteador").innerHTML = "Roteador: 10."+"0."+vdLoja+".254";
+                  document.getElementById("servidor").innerHTML = "Gerência: 10."+"0."+vdLoja+".100";
+                  document.getElementById("voip").innerHTML = "VOIP: 10."+"0."+vdLoja+".99";
+                  document.getElementById("tiraTeima").innerHTML = "Tira-Teima: 10."+"0."+vdLoja+".110";
+                  document.getElementById("impCupom").innerHTML = "Impressora de Cupom: 10."+"0."+vdLoja+".118";
+                  document.getElementById("balcao").innerHTML = "Balcões: Entre 10."+"0."+vdLoja+".101" + " até " +  "10."+"0."+vdLoja+".109";
+                  document.getElementById("caixa").innerHTML = "Caixas: Entre 10."+"0."+vdLoja+".50" + " até " +  "10."+"0."+vdLoja+".59";
+                }else if (vdLoja >= 250 && vdLoja <=999 ) {
+                  var a = vdLoja/100 | 0;
+                  var b = vdLoja/10%10 | 0 ;
+                  var c = vdLoja%10 | 0 ;
+                  document.getElementById("link").innerHTML = "Link Geral: 10."+a+b+"."+c+".125";
+                  document.getElementById("roteador").innerHTML = "Roteador: 10."+a+b+"."+c+".254";
+                  document.getElementById("servidor").innerHTML = "Gerência: 10."+a+b+"."+c+".100";
+                  document.getElementById("voip").innerHTML = "VOIP: 10."+a+b+"."+c+".99";
+                  document.getElementById("tiraTeima").innerHTML = "Tira-Teima: 10."+a+b+"."+c+".110";
+                  document.getElementById("impCupom").innerHTML = "Impressora de Cupom: 10."+a+b+"."+c+".118";
+                  document.getElementById("balcao").innerHTML = "Balcões: Entre 10."+a+b+"."+c+".101" + " até " +  "10."+a+b+"."+c+".109";
+                  document.getElementById("caixa").innerHTML = "Caixas: Entre 10."+a+b+"."+c+".50" + " até " +  "10."+a+b+"."+c+".59";
+                }else if (vdLoja >= 2000 && vdLoja < 2100) {
+                  a=vdLoja/1000 | 0;
+                  b=vdLoja/100%10 | 0;
+                  c=vdLoja/10%10 | 0;
+                  d=vdLoja%10 | 0;
+                  document.getElementById("link").innerHTML = "Link Geral: 10."+a+"."+c+d+".125";
+                  document.getElementById("roteador").innerHTML = "Roteador: 10."+a+"."+c+d+".254";
+                  document.getElementById("servidor").innerHTML = "Gerência: 10."+a+"."+c+d+".100";
+                  document.getElementById("voip").innerHTML = "VOIP: 10."+a+"."+c+d+".99";
+                  document.getElementById("tiraTeima").innerHTML = "Tira-Teima: 10."+a+"."+c+d+".110";
+                  document.getElementById("impCupom").innerHTML = "Impressora de Cupom: 10."+a+"."+c+d+".118";
+                  document.getElementById("balcao").innerHTML = "Balcões: Entre 10."+a+"."+c+d+".101" + " até " +  "10."+a+"."+c+d+".109";
+                  document.getElementById("caixa").innerHTML = "Caixas: Entre 10."+a+"."+c+d+".50" + " até " +  "10."+a+"."+c+d+".59";
+                }else if (vdLoja >= 2100 && vdLoja < 3000) {
+                  a=vdLoja/1000 | 0;
+                  b=vdLoja/100%10 | 0;
+                  c=vdLoja/10%10 | 0;
+                  d=vdLoja%10 | 0;
+                  document.getElementById("link").innerHTML = "Link Geral: 10."+a+"."+b+c+d+".125";
+                  document.getElementById("roteador").innerHTML = "Roteador: 10."+a+"."+b+c+d+".254";
+                  document.getElementById("servidor").innerHTML = "Gerência: 10."+a+"."+b+c+d+".100";
+                  document.getElementById("voip").innerHTML = "VOIP: 10."+a+"."+b+c+d+".99";
+                  document.getElementById("tiraTeima").innerHTML = "Tira-Teima: 10."+a+"."+b+c+d+".110";
+                  document.getElementById("impCupom").innerHTML = "Impressora de Cupom: 10."+a+"."+b+c+d+".118";
+                  document.getElementById("balcao").innerHTML = "Balcões: Entre 10."+a+"."+b+c+d+".101" + " até " +  "10."+a+"."+b+c+d+".109";
+                  document.getElementById("caixa").innerHTML = "Caixas: Entre 10."+a+"."+b+c+d+".50" + " até " +  "10."+a+"."+b+c+d+".59";
+                }else {
+                  document.getElementById("vdInvalido").innerHTML = "VD digitado é inválido";
+                }
+              }else{
+                if(vdLoja <= 200){
+                  document.getElementById("link").innerHTML = "Link Geral: 10."+"226."+vdLoja+".125";
+                  document.getElementById("roteador").innerHTML = "Roteador: 10."+"226."+vdLoja+".254";
+                  document.getElementById("servidor").innerHTML = "Gerência: 10."+"226."+vdLoja+".1";
+                  document.getElementById("voip").innerHTML = "VOIP: 10."+"226."+vdLoja+".70"+" ou "+"10."+"226."+vdLoja+".71";
+                  document.getElementById("tiraTeima").innerHTML = "Tira-Teima: 10."+"226."+vdLoja+".110";
+                  document.getElementById("impCupom").innerHTML = "Impressora de Cupom: 10."+"226."+vdLoja+".118";
+                  document.getElementById("balcao").innerHTML = "Balcões: Entre 10."+"226."+vdLoja+".50" + " até " +  "10."+"226."+vdLoja+".59";
+                  document.getElementById("caixa").innerHTML = "Caixas: Entre 10."+"226."+vdLoja+".2" + " até " +  "10."+"226."+vdLoja+".9";
+                }else if (vdLoja >= 201 && vdLoja <=399) {
+                  vdLoja = vdLoja - 200;
+                  document.getElementById("link").innerHTML = "Link Geral: 10."+"228."+vdLoja+".125";
+                  document.getElementById("roteador").innerHTML = "Roteador: 10."+"228."+vdLoja+".254";
+                  document.getElementById("servidor").innerHTML = "Gerência: 10."+"228."+vdLoja+".1";
+                  document.getElementById("voip").innerHTML = "VOIP: 10."+"228."+vdLoja+".70"+" ou "+"10."+"228."+vdLoja+".71";
+                  document.getElementById("tiraTeima").innerHTML = "Tira-Teima: 10."+"228."+vdLoja+".110";
+                  document.getElementById("impCupom").innerHTML = "Impressora de Cupom: 10."+"228."+vdLoja+".118";
+                  document.getElementById("balcao").innerHTML = "Balcões: Entre 10."+"228."+vdLoja+".50" + " até " +  "10."+"228."+vdLoja+".59";
+                  document.getElementById("caixa").innerHTML = "Caixas: Entre 10."+"228."+vdLoja+".2" + " até " +  "10."+"228."+vdLoja+".9";
+                }else if (vdLoja > 400 && vdLoja < 651) {
+                  vdLoja = vdLoja - 400;
+                  document.getElementById("link").innerHTML = "Link Geral: 10."+"229."+vdLoja+".125";
+                  document.getElementById("roteador").innerHTML = "Roteador: 10."+"229."+vdLoja+".254";
+                  document.getElementById("servidor").innerHTML = "Gerência: 10."+"229."+vdLoja+".1";
+                  document.getElementById("voip").innerHTML = "VOIP: 10."+"229."+vdLoja+".70"+" ou "+"10."+"229."+vdLoja+".71";
+                  document.getElementById("tiraTeima").innerHTML = "Tira-Teima: 10."+"229."+vdLoja+".110";
+                  document.getElementById("impCupom").innerHTML = "Impressora de Cupom: 10."+"229."+vdLoja+".118";
+                  document.getElementById("balcao").innerHTML = "Balcões: Entre 10."+"229."+vdLoja+".50" + " até " +  "10."+"229."+vdLoja+".59";
+                  document.getElementById("caixa").innerHTML = "Caixas: Entre 10."+"229."+vdLoja+".2" + " até " +  "10."+"229."+vdLoja+".9";
+                }
+              }
+          }
+          </script>
+
+          <script>
+            var centesimas = 0;
+            var segundos = 0;
+            var minutos = 0;
+            var horas = 0;
+            function inicio () {
+              control = setInterval(cronometro,10);
+              document.getElementById("inicio").disabled = true;
+              document.getElementById("parar").disabled = false;
+              document.getElementById("continuar").disabled = true;
+              document.getElementById("reinicio").disabled = false;
+            }
+            function parar () {
+              clearInterval(control);
+              document.getElementById("parar").disabled = true;
+              document.getElementById("continuar").disabled = false;
+            }
+            function reinicio () {
+              clearInterval(control);
+              centesimas = 0;
+              segundos = 0;
+              minutos = 0;
+              horas = 0;
+              Centesimas.innerHTML = ":00";
+              Segundos.innerHTML = ":00";
+              Minutos.innerHTML = ":00";
+              Horas.innerHTML = "00";
+              document.getElementById("inicio").disabled = false;
+              document.getElementById("parar").disabled = true;
+              document.getElementById("continuar").disabled = true;
+              document.getElementById("reinicio").disabled = true;
+            }
+            function cronometro () {
+              if (centesimas < 99) {
+                centesimas++;
+                if (centesimas < 10) { 
+                  centesimas = "0"+centesimas 
+                }
+                Centesimas.innerHTML = ":"+centesimas;
+              }
+              if (centesimas == 99) {
+                centesimas = -1;
+              }
+              if (centesimas == 0) {
+                segundos ++;
+                if (segundos < 10) { 
+                  segundos = "0"+segundos 
+                }
+                  Segundos.innerHTML = ":"+segundos;
+              }
+              if (segundos == 59) {
+                segundos = -1;
+              }
+              if ( (centesimas == 0)&&(segundos == 0) ) {
+                minutos++;
+                if (minutos < 10) { 
+                  minutos = "0"+minutos 
+                }
+                  Minutos.innerHTML = ":"+minutos;
+              }
+              if (minutos == 59) {
+                minutos = -1;
+              }
+              if ( (centesimas == 0)&&(segundos == 0)&&(minutos == 0) ) {
+                horas ++;
+                if (horas < 10) { 
+                  horas = "0"+horas 
+                }
+                Horas.innerHTML = horas;
+              }
+            }
+          </script>
+          <script>
+            function volta() {
+              document.getElementById('voltas').innerHTML += document.getElementById('Horas').firstChild.data + "" + document.getElementById('Minutos').firstChild.data + "" + document.getElementById('Segundos').firstChild.data + "<br>";
+              document.getElementById('pausa').innerHTML += document.getElementById('identificacaoPausa').value + "<br>";
+            }
+          </script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+</div></body></html>

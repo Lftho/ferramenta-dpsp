@@ -1,0 +1,173 @@
+body{
+    background-color: #D3D3D3;
+}
+  *{    
+    margin: 0;
+    padding: 0;
+}
+/* Calculo de IP */
+.bloco{
+    height: 280px;
+    width: 590px;
+    text-align: center;
+    padding: 50px 80px 0px 80px;
+    margin-left:-30%;
+    margin-top: 20%; 
+    box-shadow: 5px 10px 18px #888888;
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: rgb(156, 155, 155);
+}
+
+.color1{
+    color:#ADD8E6;
+}
+.color2{
+    color:rgb(180, 61, 61);
+}
+.color3{
+    color:white;
+}
+.bandeira{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    height: 40px;
+    background-color:#ADD8E6;
+    color: rgb(27, 27, 27);
+}
+
+.vdloja{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    height: 40px;
+    background-color:rgb(180, 61, 61);
+    color: rgb(248, 246, 246);
+}
+
+.custom-select, .input-group-text{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    height: 40px;
+}
+.calculIP {
+    height: 37px;
+    width: 138px;
+    font-size: 20px;
+    border: 2px solid rgb(65, 180, 65);
+    border-radius: 4px;
+    text-align: center;
+    background-color: rgb(15, 211, 64); 
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.calculIP:hover{background-color: rgb(26, 163, 60)}
+
+.calculIP:active{
+    background-color: rgb(26, 163, 60);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+/* Estilo do Controle de Pausas */
+#contenedor{
+    margin: 10px auto;
+    width: 540px;
+    height: 115px;
+    border: 2px solid rgb(27, 26, 26);
+    background-color: rgb(168, 180, 165);
+    color: aliceblue;
+}
+
+.reloj{
+    float: left;
+    font-size: 80px;
+    font-family: "Digital-7";
+    margin-left: 38px;
+    color: #222;
+}
+
+.boton1{
+    border: 1px solid green;
+    height: 30px;
+    width: 128px;
+    font-size: 20px;
+    border-radius: 4px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(132, 202, 132);
+    color: white;
+}
+
+.boton2{
+    border: 1px solid rgb(128, 0, 0);
+    height: 30px;
+    width: 128px;
+    font-size: 20px;
+    border-radius: 4px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(179, 29, 29);
+    color: white;
+}
+
+.boton3{
+    border: 1px solid rgb(196, 179, 30);
+    height: 30px;
+    width: 128px;
+    font-size: 20px;
+    border-radius: 4px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgba(206, 195, 47, 0.877);
+    color: white;
+}
+
+.boton4{
+    border: 1px solid green;
+    height: 30px;
+    width: 128px;
+    font-size: 20px;
+    border-radius: 4px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(97, 196, 17);
+    color: white;
+}
+
+.boton5{
+    border: 1px solid rgb(6, 43, 110);
+    width: 128px;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 4px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(21, 55, 207);
+    color: white;
+}
+
+#voltas{
+    font-family: 'Digital-7';
+    font-size: 29px;
+}
+.regis, .ident{
+    color: white;
+}
+.thead{
+    background-color: rgb(110, 163, 110);
+}
+
+.modal-body{
+    color: rgb(22, 9, 9);
+}
+
+.boton{
+    height: 50px;
+    width: 100px;
+    margin-top: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 7px 6px 14px 0 gray;
+    background-color: #222;
+    color: #fff;
+}
